@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recruiter Dashboard</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background-color: #f5f7fa;
+      color: #333;
+    }
+    
+    .container {
+      display: flex;
+      min-height: 100vh;
+    }
+    
+    /* Navigation sidebar */
+    .nav-sidebar {
+      width: 80px;
+      background-color: #2c3e50;
+      color: white;
+      padding: 20px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: fixed;
+      height: 100vh;
+    }
+    
+    .nav-sidebar .logo {
+      font-size: 24px;
+      margin-bottom: 30px;
+    }
+    
+    .nav-item {
+      padding: 15px 0;
+      cursor: pointer;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+    
+    .nav-item.active {
+      background-color: #34495e;
+    }
+    
+    /* Main content */
+    .main-content {
+      flex: 1;
+      margin-left: 80px;
+      padding: 20px;
+    }
+    
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+    
+    .recruiter-info {
+      display: flex;
+      align-items: center;
+    }
+    
+    .recruiter-avatar {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background-color: #4f2db3;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      margin-right: 10px;
+    }
+    
+    /* Dashboard grid */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 20px;
+    }
+    
+    .active-jobs {
+      background-color: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+    
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    
+    .job-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    
+    .job-card {
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      padding: 15px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .job-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .job-title {
+      font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+    
+    .job-meta {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+    
+    .progress-bar {
+      height: 8px;
+      background-color: #e0e0e0;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+    
+    .progress {
+      height: 100%;
+      background-color: #4f2db3;
+      border-radius: 4px;
+    }
+    
+    .job-candidates {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+    }
+    
+    .right-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    
+    .metrics-card, .calendar-card {
+      background-color: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+    
+    .metric-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    
+    .metric-value {
+      font-weight: bold;
+      font-size: 18px;
+    }
+    
+    .calendar {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    .calendar th, .calendar td {
+      text-align: center;
+      padding: 10px;
+      font-size: 14px;
+    }
+    
+    .calendar th {
+      color: #666;
+    }
+    
+    .calendar .meeting-day {
+      background-color: #e8f4fd;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    /* Job Detail Page */
+    .job-detail {
+      background-color: white;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+    
+    .job-detail-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    
+    .job-section {
+      margin-bottom: 20px;
+    }
+    
+    .job-section h3 {
+      margin-bottom: 10px;
+      color: #555;
+    }
+    
+    .requirements-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      list-style-type: none;
+    }
+    
+    .requirements-list li {
+      background-color: #f5f7fa;
+      padding: 10px;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .candidates-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 15px;
+    }
+    
+    .candidate-card {
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      cursor: pointer;
+    }
+    
+    .candidate-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    
+    .candidate-name {
+      font-weight: bold;
+    }
+    
+    .match-percentage {
+      background-color: #4f2db3;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 15px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+    
+    .candidate-meta {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+    
+    .view-profile-btn {
+      background-color:#4f2db3;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      width: 100%;
+    }
+    
+    /* Side Panel */
+    .side-panel {
+      position: fixed;
+      top: 0;
+      right: -600px;
+      width: 600px;
+      height: 100vh;
+      background-color: white;
+      box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+      transition: right 0.3s ease;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .side-panel.active {
+      right: 0;
+    }
+    
+    .panel-header {
+      padding: 20px;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .close-panel {
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: #666;
+    }
+    
+    .panel-tabs {
+      display: flex;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .panel-tab {
+      padding: 15px 20px;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+    }
+    
+    .panel-tab.active {
+      border-bottom-color: #4f2db3;
+      font-weight: bold;
+    }
+    
+    .panel-content {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+    }
+    
+    .candidate-profile {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    
+    .profile-header {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    
+    .large-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background-color: #4f2db3;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    
+    .candidate-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    
+    .action-btn {
+      padding: 10px 15px;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    
+    .primary-btn {
+      background-color: #4f2db3;
+      color: white;
+    }
+    
+    .secondary-btn {
+      background-color: #f5f7fa;
+      color: #333;
+    }
+    
+    .resume-preview {
+      background-color: #f9f9f9;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+    
+    .resume-section {
+      margin-bottom: 20px;
+    }
+    
+    /* Background overlay */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.3);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s;
+    }
+    
+    .overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Background overlay -->
+  <div class="overlay" id="overlay"></div>
+  
+  <!-- Side panel for candidate profile -->
+  <div class="side-panel" id="sidePanel">
+    <div class="panel-header">
+      <h2>Candidate Profile</h2>
+      <button class="close-panel" id="closePanel">&times;</button>
+    </div>
+    <div class="panel-tabs">
+      <div class="panel-tab active" data-tab="overview">Overview</div>
+      <div class="panel-tab" data-tab="resume">Resume</div>
+      <div class="panel-tab" data-tab="schedule">Schedule</div>
+    </div>
+    <div class="panel-content">
+      <div id="overviewTab" class="candidate-profile">
+        <div class="profile-header">
+          <div class="large-avatar">JS</div>
+          <div>
+            <h2>John Smith</h2>
+            <p>Senior Software Engineer</p>
+            <p>San Francisco, CA • <strong>92% Match</strong></p>
+          </div>
+        </div>
+        
+        <div class="profile-summary">
+          <h3>Summary</h3>
+          <p>Full-stack developer with 6+ years of experience in React, Node.js, and Python. Passionate about building scalable web applications with a focus on user experience and performance.</p>
+        </div>
+        
+        <div class="skills-match">
+          <h3>Skills Match</h3>
+          <div class="requirements-list">
+            <li>✅ React (5 years)</li>
+            <li>✅ Node.js (4 years)</li>
+            <li>✅ Python (6 years)</li>
+            <li>⚠️ AWS (2 years, needs 3+)</li>
+            <li>✅ CI/CD Pipelines</li>
+            <li>✅ Agile Methodology</li>
+          </div>
+        </div>
+        
+        <div class="candidate-actions">
+          <button class="action-btn primary-btn" onclick="window.open('https://calendar.google.com', '_blank')">Book Interview</button>
+          <button class="action-btn secondary-btn">Send Message</button>
+          <button class="action-btn secondary-btn" id="viewResumeBtn">View Full Resume</button>
+        </div>
+      </div>
+      
+      <div id="resumeTab" class="hidden">
+        <div class="resume-preview">
+          <div class="resume-section">
+            <h3>Experience</h3>
+            <h4>Senior Software Engineer - TechCorp</h4>
+            <p>2020 - Present</p>
+            <ul>
+              <li>Led development of microservices architecture</li>
+              <li>Reduced API response time by 40%</li>
+              <li>Mentored junior developers</li>
+            </ul>
+            
+            <h4>Software Engineer - DataFlow Inc.</h4>
+            <p>2017 - 2020</p>
+            <ul>
+              <li>Built RESTful APIs using Node.js</li>
+              <li>Implemented CI/CD pipelines</li>
+              <li>Improved test coverage from 60% to 90%</li>
+            </ul>
+          </div>
+          
+          <div class="resume-section">
+            <h3>Education</h3>
+            <h4>MSc Computer Science - Stanford University</h4>
+            <p>2015 - 2017</p>
+            
+            <h4>BSc Computer Engineering - UC Berkeley</h4>
+            <p>2011 - 2015</p>
+          </div>
+          
+          <div class="resume-section">
+            <h3>Skills</h3>
+            <p>React, Node.js, Python, AWS, Docker, MongoDB, PostgreSQL, Git, CI/CD, Agile, Scrum</p>
+          </div>
+        </div>
+      </div>
+      
+      <div id="scheduleTab" class="hidden">
+        <h3>Schedule Interview</h3>
+        <p>Select a time slot that works for you:</p>
+        <div style="margin-top: 20px;">
+          <a href="https://calendar.google.com" target="_blank" class="action-btn primary-btn">Open Google Calendar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Navigation Sidebar -->
+    <div class="nav-sidebar">
+      <div class="logo">R</div>
+      <div class="nav-item active">📊</div>
+      <div class="nav-item">👥</div>
+      <div class="nav-item">📝</div>
+      <div class="nav-item">⚙️</div>
+    </div>
+    
+    <!-- Main Content - Dashboard -->
+    <div class="main-content" id="dashboardPage">
+      <div class="header">
+        <h1>Dashboard</h1>
+        <div class="recruiter-info">
+          <div class="recruiter-avatar">AR</div>
+          <span>Alex Rodriguez</span>
+        </div>
+      </div>
+      
+      <div class="dashboard-grid">
+        <div class="active-jobs">
+          <div class="section-header">
+            <h2>Active Hiring</h2>
+          </div>
+          
+          <div class="job-cards">
+            <div class="job-card" onclick="showJobDetails()">
+              <div class="job-title">Senior Frontend Developer</div>
+              <div class="job-meta">Engineering • Remote</div>
+              <div class="progress-bar">
+                <div class="progress" style="width: 82%;"></div>
+              </div>
+              <div class="job-candidates">
+                <span>45 candidates</span>
+                <span><strong>82% eligible</strong></span>
+              </div>
+            </div>
+            
+            <div class="job-card">
+              <div class="job-title">Product Manager</div>
+              <div class="job-meta">Product • San Francisco</div>
+              <div class="progress-bar">
+                <div class="progress" style="width: 65%;"></div>
+              </div>
+              <div class="job-candidates">
+                <span>32 candidates</span>
+                <span><strong>65% eligible</strong></span>
+              </div>
+            </div>
+            
+            <div class="job-card">
+              <div class="job-title">DevOps Engineer</div>
+              <div class="job-meta">IT • Hybrid</div>
+              <div class="progress-bar">
+                <div class="progress" style="width: 78%;"></div>
+              </div>
+              <div class="job-candidates">
+                <span>28 candidates</span>
+                <span><strong>78% eligible</strong></span>
+              </div>
+            </div>
+            
+            <div class="job-card">
+              <div class="job-title">UX/UI Designer</div>
+              <div class="job-meta">Design • Remote</div>
+              <div class="progress-bar">
+                <div class="progress" style="width: 70%;"></div>
+              </div>
+              <div class="job-candidates">
+                <span>39 candidates</span>
+                <span><strong>70% eligible</strong></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="right-sidebar">
+          <div class="metrics-card">
+            <div class="section-header">
+              <h3>Hiring Metrics</h3>
+            </div>
+            
+            <div class="metric-item">
+              <span>Time to Hire</span>
+              <span class="metric-value">21 days</span>
+            </div>
+            
+            <div class="metric-item">
+              <span>Open Positions</span>
+              <span class="metric-value">8</span>
+            </div>
+            
+            <div class="metric-item">
+              <span>Active Candidates</span>
+              <span class="metric-value">144</span>
+            </div>
+            
+            <div class="metric-item">
+              <span>Interviews This Week</span>
+              <span class="metric-value">12</span>
+            </div>
+          </div>
+          
+          <div class="calendar-card">
+            <div class="section-header">
+              <h3>Calendar</h3>
+            </div>
+            
+            <table class="calendar">
+              <thead>
+                <tr>
+                  <th>M</th>
+                  <th>T</th>
+                  <th>W</th>
+                  <th>T</th>
+                  <th>F</th>
+                  <th>S</th>
+                  <th>S</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>2</td>
+                  <td class="meeting-day">3</td>
+                  <td>4</td>
+                  <td>5</td>
+                  <td>6</td>
+                  <td>7</td>
+                </tr>
+                <tr>
+                  <td class="meeting-day">8</td>
+                  <td>9</td>
+                  <td>10</td>
+                  <td class="meeting-day">11</td>
+                  <td>12</td>
+                  <td>13</td>
+                  <td>14</td>
+                </tr>
+                <tr>
+                  <td>15</td>
+                  <td class="meeting-day">16</td>
+                  <td>17</td>
+                  <td>18</td>
+                  <td class="meeting-day">19</td>
+                  <td>20</td>
+                  <td>21</td>
+                </tr>
+                <tr>
+                  <td>22</td>
+                  <td>23</td>
+                  <td class="meeting-day">24</td>
+                  <td>25</td>
+                  <td>26</td>
+                  <td>27</td>
+                  <td>28</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Job Details Page -->
+    <div class="main-content hidden" id="jobDetailsPage">
+      <div class="header">
+        <div style="display: flex; align-items: center;">
+          <button class="action-btn secondary-btn" style="margin-right: 15px;" onclick="goBackToDashboard()">← Back</button>
+          <h1>Senior Frontend Developer</h1>
+        </div>
+        <div class="recruiter-info">
+          <div class="recruiter-avatar">AR</div>
+          <span>Alex Rodriguez</span>
+        </div>
+      </div>
+      
+      <div class="job-detail">
+        <div class="job-detail-header">
+          <div>
+            <h2>You're looking for</h2>
+          </div>
+          <div>
+            <span>Engineering • Remote • 45 candidates</span>
+          </div>
+        </div>
+        
+        <div class="job-section">
+          <h3>Required Skills</h3>
+          <ul class="requirements-list">
+            <li>React (3+ years)</li>
+            <li>TypeScript</li>
+            <li>Redux/State Management</li>
+            <li>CSS/SCSS</li>
+            <li>Testing (Jest, React Testing Library)</li>
+            <li>Performance Optimization</li>
+          </ul>
+        </div>
+        
+        <div class="job-section">
+          <h3>Experience & Qualifications</h3>
+          <ul class="requirements-list">
+            <li>5+ years of frontend development</li>
+            <li>BS/MS in Computer Science or equivalent</li>
+            <li>Previous experience with large-scale applications</li>
+            <li>Experience with CI/CD pipelines</li>
+          </ul>
+        </div>
+        
+        <div class="job-section">
+          <h3>Responsibilities</h3>
+          <ul class="requirements-list">
+            <li>Develop user-facing features</li>
+            <li>Build reusable components</li>
+            <li>Optimize application performance</li>
+            <li>Collaborate with backend developers</li>
+            <li>Mentor junior developers</li>
+            <li>Participate in code reviews</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="candidates-section">
+        <div class="section-header">
+          <h2>Top Candidates</h2>
+          <div>
+            <span>Sort by: Match %</span>
+          </div>
+        </div>
+        
+        <div class="candidates-list">
+          <div class="candidate-card" onclick="openCandidateProfile('John Smith')">
+            <div class="candidate-header">
+              <span class="candidate-name">John Smith</span>
+              <span class="match-percentage">92%</span>
+            </div>
+            <div class="candidate-meta">
+              <p>Senior Software Engineer</p>
+              <p>6 years experience • San Francisco</p>
+            </div>
+            <button class="view-profile-btn">View Profile</button>
+          </div>
+          
+          <div class="candidate-card" onclick="openCandidateProfile('Sarah Johnson')">
+            <div class="candidate-header">
+              <span class="candidate-name">Sarah Johnson</span>
+              <span class="match-percentage">89%</span>
+            </div>
+            <div class="candidate-meta">
+              <p>Frontend Developer</p>
+              <p>5 years experience • Remote</p>
+            </div>
+            <button class="view-profile-btn">View Profile</button>
+          </div>
+          
+          <div class="candidate-card" onclick="openCandidateProfile('Michael Wong')">
+            <div class="candidate-header">
+              <span class="candidate-name">Michael Wong</span>
+              <span class="match-percentage">87%</span>
+            </div>
+            <div class="candidate-meta">
+              <p>UI/UX Developer</p>
+              <p>7 years experience • New York</p>
+            </div>
+            <button class="view-profile-btn">View Profile</button>
+          </div>
+          
+          <div class="candidate-card" onclick="openCandidateProfile('Jessica Lee')">
+            <div class="candidate-header">
+              <span class="candidate-name">Jessica Lee</span>
+              <span class="match-percentage">85%</span>
+            </div>
+            <div class="candidate-meta">
+              <p>Frontend Engineer</p>
+              <p>4 years experience • Chicago</p>
+            </div>
+            <button class="view-profile-btn">View Profile</button>
+          </div>
+          
+          <div class="candidate-card" onclick="openCandidateProfile('David Miller')">
+            <div class="candidate-header">
+              <span class="candidate-name">David Miller</span>
+              <span class="match-percentage">82%</span>
+            </div>
+            <div class="candidate-meta">
+              <p>Senior React Developer</p>
+              <p>6 years experience • Austin</p>
+            </div>
+            <button class="view-profile-btn">View Profile</button>
+          </div>
+          
+          <div class="candidate-card" onclick="openCandidateProfile('Emily Chen')">
+            <div class="candidate-header">
+              <span class="candidate-name">Emily Chen</span>
+              <span class="match-percentage">80%</span>
+            </div>
+            <div class="candidate-meta">
+              <p>Frontend Architect</p>
+              <p>8 years experience • Seattle</p>
+            </div>
+            <button class="view-profile-btn">View Profile</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Toggle between tabs in the side panel
+    document.querySelectorAll('.panel-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        // Hide all tabs
+        document.querySelectorAll('[id$="Tab"]').forEach(content => {
+          content.classList.add('hidden');
+        });
+        
+        // Remove active class from all tabs
+        document.querySelectorAll('.panel-tab').forEach(t => {
+          t.classList.remove('active');
+        });
+        
+        // Show selected tab and mark it as active
+        const tabName = tab.dataset.tab;
+        document.getElementById(`${tabName}Tab`).classList.remove('hidden');
+        tab.classList.add('active');
+      });
+    });
+    
+    // View Resume button functionality
+    document.getElementById('viewResumeBtn').addEventListener('click', () => {
+      document.querySelector('[data-tab="resume"]').click();
+    });
+    
+    // Open and close side panel
+    function openCandidateProfile(name) {
+      document.getElementById('sidePanel').classList.add('active');
+      document.getElementById('overlay').classList.add('active');
+    }
+    
+    document.getElementById('closePanel').addEventListener('click', () => {
+      document.getElementById('sidePanel').classList.remove('active');
+      document.getElementById('overlay').classList.remove('active');
+    });
+    
+    document.getElementById('overlay').addEventListener('click', () => {
+      document.getElementById('sidePanel').classList.remove('active');
+      document.getElementById('overlay').classList.remove('active');
+    });
+    
+    // Navigate to job details page
+    function showJobDetails() {
+      document.getElementById('dashboardPage').classList.add('hidden');
+      document.getElementById('jobDetailsPage').classList.remove('hidden');
+    }
+    
+    // Go back to dashboard
+    function goBackToDashboard() {
+      document.getElementById('jobDetailsPage').classList.add('hidden');
+      document.getElementById('dashboardPage').classList.remove('hidden');
+    }
+  </script>
+</body>
+</html>
