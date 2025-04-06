@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Job Matching</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f6f4fb;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 60px auto;
+      background-color: #fff;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(108, 92, 231, 0.2);
+    }
+
+    h1 {
+      color: #6c5ce7;
+      text-align: center;
+    }
+
+    label {
+      font-weight: bold;
+      margin-top: 20px;
+      display: block;
+      color: #6c5ce7;
+    }
+
+    input[type="file"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 8px;
+      border: 2px solid #dcd6f7;
+      border-radius: 10px;
+      outline: none;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    button {
+      margin-top: 30px;
+      width: 100%;
+      padding: 14px;
+      background-color: #6c5ce7;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #5c4dcf;
+    }
+
+    #result {
+      margin-top: 30px;
+      background: #f3f0ff;
+      padding: 20px;
+      border-radius: 12px;
+      color: #2d2b52;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Job Compatibiltiy</h1>
+
+    <label for="resumeUpload">Upload Resume:</label>
+    <input type="file" id="resumeUpload" accept="application/pdf">
+
+    <label for="jdInput">Job Description</label>
+    <textarea id="jdInput" placeholder="Enter job description here..."></textarea>
+
+    <button onclick="analyzeResume()">Analyze Resume</button>
+
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function analyzeResume() {
+      const file = document.getElementById("resumeUpload").files[0];
+      const jd = document.getElementById("jdInput").value;
+      const resultDiv = document.getElementById("result");
+
+      if (!file || !jd.trim()) {
+        alert("Please upload a resume and paste a job description.");
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append("resume", file);
+      formData.append("jd", jd);
+
+      fetch("/upload_resume", {
+        method: "POST",
+        body: formData
+      })
+      .then(res => res.json())
+      .then(data => {
+        resultDiv.innerHTML = `
+          <h3>📋 Resume Summary</h3>
+          <p>${data.summary || "Summary not available."}</p>
+          <h3>🎯 Match Score</h3>
+          <p><strong>${data.match_score || "N/A"}%</strong></p>
+        `;
+      })
+      .catch(err => {
+        resultDiv.innerHTML = `<p style="color: red;">Error processing resume. Please try again.</p>`;
+        console.error(err);
+      });
+    }
+  </script>
+
+</body>
+</html>

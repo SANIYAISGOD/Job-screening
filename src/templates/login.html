@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign In</title>
+  <link rel="stylesheet" href="static/styles.css" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f5f7fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .login-container {
+      background: #fff;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+      width: 400px;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #4f2db3;
+    }
+
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .radio-group {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+      gap: 20px;
+    }
+
+    .radio-group label {
+      font-weight: 500;
+    }
+
+    .login-btn {
+      background-color: #4f2db3;
+      color: #fff;
+      padding: 12px;
+      width: 100%;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+
+    .login-btn:hover {
+      background-color: #3b20a3;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-container">
+    <h2>Sign In</h2>
+    <form id="loginForm">
+      <input type="email" placeholder="Email" required />
+      <input type="password" placeholder="Password" required />
+      
+      <div class="radio-group">
+        <label><input type="radio" name="role" value="candidate" checked /> Candidate</label>
+        <label><input type="radio" name="role" value="recruiter" /> Recruiter</label>
+      </div>
+      
+      <button type="submit" class="login-btn">Continue</button>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById("loginForm");
+  
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+  
+      const role = document.querySelector('input[name="role"]:checked').value;
+  
+      if (role === "candidate") {
+        window.location.href = "/index";
+      } else if (role === "recruiter") {
+        window.location.href = "/recruiter";
+      }
+    }); // 👈 This closing brace was missing!
+  </script>
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web3 Software Engineer Intern - Morpheus Labs | CareerMatch</title>
+  <link rel="stylesheet" href="static/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar">
+      <div class="sidebar-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+        <span>Home</span>
+      </div>
+      <div class="sidebar-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"></circle><path d="M20 21a8 8 0 1 0-16 0"></path></svg>
+        <span>Profile</span>
+      </div>
+      <div class="sidebar-item selected">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2"></rect><line x1="16" x2="16" y1="2" y2="6"></line><line x1="8" x2="8" y1="2" y2="6"></line><line x1="3" x2="21" y1="10" y2="10"></line><path d="M8 14h.01"></path><path d="M12 14h.01"></path><path d="M16 14h.01"></path><path d="M8 18h.01"></path><path d="M12 18h.01"></path><path d="M16 18h.01"></path></svg>
+        <span>Jobs</span>
+      </div>
+      <div class="sidebar-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2"></rect><path d="M9 22v-4h6v4"></path><circle cx="12" cy="10" r="2"></circle><path d="M8 14h8"></path></svg>
+        <span>Applied</span>
+      </div>
+      <div class="sidebar-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9a2 2 0 0 1-2 2H6l-4 4V4c0-1.1.9-2 2-2h8a2 2 0 0 1 2 2v5Z"></path><path d="M18 9h2a2 2 0 0 1 2 2v11l-4-4h-6a2 2 0 0 1-2-2v-1"></path></svg>
+        <span>Messages</span>
+      </div>
+      <div class="sidebar-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+        <span>Discover</span>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content job-detail-page">
+      <div class="back-button">
+        <a href="{{ url_for('index') }}">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg>
+          Back to jobs
+        </a>
+      </div>
+      
+      <div class="job-detail-container">
+        <div class="job-detail-main">
+          <div class="job-header">
+            <div class="job-company-info">
+              <div class="company-logo large">
+                <div class="logo-bg" style="background-color: #4C1D95;">M</div>
+              </div>
+              <div>
+                <h1>Web3 Software Engineer Intern</h1>
+                <div class="company-details">
+                  <h2>Morpheus Labs</h2>
+                  <span class="dot-separator">•</span>
+                  <span>Singapore</span>
+                  <span class="dot-separator">•</span>
+                  <span>In office</span>
+                </div>
+                <div class="match-indicator">
+                  <div class="match-percentage-large">72% Match</div>
+                  <div class="match-progress-bar">
+                    <div class="progress-fill" style="width: 72%;"></div>
+                  </div>
+                </div>
+                <div class="posted-date">Posted 2 weeks ago</div>
+              </div>
+            </div>
+            <div class="job-actions-container">
+              <a href="{{ url_for('matcher') }}" class="apply-btn">Apply Now</a>
+              <button class="save-job-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+                Save
+              </button>
+            </div>
+          </div>
+          
+          <div class="job-detail-content">
+            <div class="job-summary">
+              <div class="summary-item">
+                <h3>Experience Level</h3>
+                <p>Entry-level / Internship</p>
+              </div>
+              <div class="summary-item">
+                <h3>Salary</h3>
+                <p>$0k - $1k per month</p>
+              </div>
+              <div class="summary-item">
+                <h3>Employment Type</h3>
+                <p>Full-time Internship (3-6 months)</p>
+              </div>
+            </div>
+
+            <div class="job-description">
+              <h3>About the role</h3>
+              <p>Morpheus Labs is seeking a talented Web3 Software Engineer Intern to join our blockchain development team in Singapore. This is an exciting opportunity to work at the forefront of blockchain technology, building decentralized applications and contributing to our blockchain-as-a-service platform.</p>
+              
+              <p>As a Web3 Engineer Intern, you'll gain hands-on experience with blockchain technologies, smart contract development, and decentralized application architecture. You'll work closely with our development team to build and enhance blockchain solutions for enterprise clients.</p>
+              
+              <h3>What you'll do</h3>
+              <ul>
+                <li>Develop and test smart contracts on various blockchain platforms (Ethereum, Binance Smart Chain, Polygon)</li>
+                <li>Build frontend interfaces for decentralized applications using React and Web3.js</li>
+                <li>Integrate blockchain wallets and transaction functionality</li>
+                <li>Collaborate with the product team to implement new blockchain features</li>
+                <li>Assist in documentation and technical writing for blockchain implementations</li>
+                <li>Participate in code reviews and contribute to our technical knowledge base</li>
+              </ul>
+              
+              <h3>About Morpheus Labs</h3>
+              <p>Morpheus Labs is a blockchain-platform-as-a-service company that provides enterprises with a streamlined way to build and deploy blockchain applications. Our platform enables businesses to develop, test, and manage decentralized solutions without having to manage complex blockchain infrastructure.</p>
+              
+              <p>We're a dynamic team of blockchain enthusiasts working to make blockchain technology more accessible to enterprises worldwide. Join us in our mission to accelerate blockchain adoption through innovative solutions!</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="job-detail-sidebar">
+          <div class="sidebar-section">
+            <h3>Key Skills Required</h3>
+            <div class="skills-container">
+              <div class="skill-tag">JavaScript</div>
+              <div class="skill-tag">React</div>
+              <div class="skill-tag">Solidity</div>
+              <div class="skill-tag">Web3.js</div>
+              <div class="skill-tag">Smart Contracts</div>
+              <div class="skill-tag">Ethereum</div>
+              <div class="skill-tag">Git</div>
+              <div class="skill-tag">Node.js</div>
+            </div>
+          </div>
+          
+          <div class="sidebar-section">
+            <h3>Your Match Breakdown</h3>
+            <div class="match-breakdown">
+              <div class="match-item">
+                <div class="match-label">Skills Match</div>
+                <div class="match-value">65%</div>
+                <div class="match-bar">
+                  <div class="match-fill" style="width: 65%"></div>
+                </div>
+              </div>
+              <div class="match-item">
+                <div class="match-label">Experience Match</div>
+                <div class="match-value">85%</div>
+                <div class="match-bar">
+                  <div class="match-fill" style="width: 85%"></div>
+                </div>
+              </div>
+              <div class="match-item">
+                <div class="match-label">Education Match</div>
+                <div class="match-value">90%</div>
+                <div class="match-bar">
+                  <div class="match-fill" style="width: 90%"></div>
+                </div>
+              </div>
+              <div class="match-item">
+                <div class="match-label">Location Match</div>
+                <div class="match-value">45%</div>
+                <div class="match-bar">
+                  <div class="match-fill" style="width: 45%"></div>
+                </div>
+              </div>
+              <div class="match-item">
+                <div class="match-label overall">Overall Match</div>
+                <div class="match-value overall">72%</div>
+                <div class="match-bar">
+                  <div class="match-fill" style="width: 72%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="sidebar-section">
+            <h3>Company Information</h3>
+            <div class="company-info-item">
+              <div class="info-label">Company Size</div>
+              <div class="info-value">11-50 employees</div>
+            </div>
+            <div class="company-info-item">
+              <div class="info-label">Industry</div>
+              <div class="info-value">Blockchain, Web3, Enterprise Software</div>
+            </div>
+            <div class="company-info-item">
+              <div class="info-label">Founded</div>
+              <div class="info-value">2018</div>
+            </div>
+            <div class="company-info-item">
+              <div class="info-label">Funding Stage</div>
+              <div class="info-value">Series B</div>
+            </div>
+            <div class="company-info-item">
+              <div class="info-label">Location</div>
+              <div class="info-value">Singapore</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
