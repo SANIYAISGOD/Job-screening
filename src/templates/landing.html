@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finder AI - AI-Powered Recruitment Platform</title>
+  <meta name="description" content="Finder AI uses advanced artificial intelligence to connect the right candidates with the right opportunities, revolutionizing how teams are built.">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
+  <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+</head>
+<body>
+  <div class="wrapper">
+    <!-- Navbar -->
+    <nav class="nav">
+      <div class="container nav-container">
+        <div class="nav-logo">
+          <div class="nav-logo-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path>
+              <path d="M5 3v4"></path>
+              <path d="M19 17v4"></path>
+              <path d="M3 5h4"></path>
+              <path d="M17 19h4"></path>
+            </svg>
+          </div>
+          <span class="nav-logo-text">Finder AI</span>
+        </div>
+
+        <button class="btn btn-ghost btn-icon nav-toggle" onclick="toggleMenu()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" x2="20" y1="12" y2="12"></line>
+            <line x1="4" x2="20" y1="6" y2="6"></line>
+            <line x1="4" x2="20" y1="18" y2="18"></line>
+          </svg>
+        </button>
+
+        <div class="nav-links" id="navMenu">
+          <div class="flex-col md-flex-row">
+            <a href="#features" class="nav-link">Features</a>
+            <a href="#how-it-works" class="nav-link">How it Works</a>
+            <a href="#pricing" class="nav-link">Pricing</a>
+            <div class="nav-buttons">
+              <button class="btn btn-ghost">Log in</button>
+              <button class="btn btn-primary">Sign up free</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <!-- Abstract background elements -->
+      <div class="hero-bg">
+        <div class="hero-bg-circle-1"></div>
+        <div class="hero-bg-circle-2"></div>
+        <div class="hero-bg-circle-3"></div>
+      </div>
+
+      <div class="container">
+        <div class="hero-content lg-grid-cols-2">
+          <div class="hero-text fade-in">
+            <div class="hero-badge">AI-Powered Recruitment Platform</div>
+            <h1 class="hero-title md-text-6xl">
+              Find the <span>Perfect Match</span> for Your Team
+            </h1>
+            <p class="hero-description">
+              Finder AI uses advanced artificial intelligence to connect the right candidates with the right
+              opportunities, revolutionizing how teams are built.
+            </p>
+            <div class="hero-buttons sm-flex-row lg-justify-start">
+                <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg">Get Started Free</a>
+
+                
+              
+              <button class="btn btn-outline btn-lg">Watch Demo</button>
+            </div>
+          </div>
+
+          <div class="relative fade-in delayed">
+            <div class="hero-dashboard">
+              <div class="dashboard-tabs">
+                <button
+                  class="dashboard-tab active"
+                  id="tab-0"
+                  onclick="setActiveTab(0)"
+                >
+                  For Recruiters
+                </button>
+                <button
+                  class="dashboard-tab"
+                  id="tab-1"
+                  onclick="setActiveTab(1)"
+                >
+                  For Candidates
+                </button>
+                <button
+                  class="dashboard-tab"
+                  id="tab-2"
+                  onclick="setActiveTab(2)"
+                >
+                  AI Insights
+                </button>
+              </div>
+
+              <div class="dashboard-content">
+                <div class="dashboard-panel active" id="panel-0">
+                  <h3 class="dashboard-title">Candidate Matches</h3>
+                  <div class="dashboard-list">
+                    <div class="dashboard-item">
+                      <div class="dashboard-item-icon">
+                        SJ
+                      </div>
+                      <div class="dashboard-item-content">
+                        <div class="dashboard-item-title">Sarah Johnson</div>
+                        <div class="dashboard-item-subtitle">Senior UX Designer</div>
+                      </div>
+                      <div class="dashboard-item-match">
+                        <div class="dashboard-item-match-value">92%</div>
+                        <div class="dashboard-item-match-label">match</div>
+                      </div>
+                      <div class="dashboard-item-arrow">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="m9 18 6-6-6-6"></path>
+                        </svg>
+                      </div>
+                    </div>
+                    <div class="dashboard-item">
+                      <div class="dashboard-item-icon">
+                        MC
+                      </div>
+                      <div class="dashboard-item-content">
+                        <div class="dashboard-item-title">Michael Chen</div>
+                        <div class="dashboard-item-subtitle">Frontend Developer</div>
+                      </div>
+                      <div class="dashboard-item-match">
+                        <div class="dashboard-item-match-value">87%</div>
+                        <div class="dashboard-item-match-label">match</div>
+                      </div>
+                      <div class="dashboard-item-arrow">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="m9 18 6-6-6-6"></path>
+                        </svg>
+                      </div>
+                    </div>
+                    <div class="dashboard-item">
+                      <div class="dashboard-item-icon">
+                        PP
+                      </div>
+                      <div class="dashboard-item-content">
+                        <div class="dashboard-item-title">Priya Patel</div>
+                        <div class="dashboard-item-subtitle">Product Manager</div>
+                      </div>
+                      <div class="dashboard-item-match">
+                        <div class="dashboard-item-match-value">78%</div>
+                        <div class="dashboard-item-match-label">match</div>
+                      </div>
+                      <div class="dashboard-item-arrow">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="m9 18 6-6-6-6"></path>
+                        </svg>
+                      </div>
+                    </div>
+                    <div class="dashboard-item">
+                      <div class="dashboard-item-icon">
+                        DK
+                      </div>
+                      <div class="dashboard-item-content">
+                        <div class="dashboard-item-title">David Kim</div>
+                        <div class="dashboard-item-subtitle">Data Scientist</div>
+                      </div>
+                      <div class="dashboard-item-match">
+                        <div class="dashboard-item-match-value">95%</div>
+                        <div class="dashboard-item-match-label">match</div>
+                      </div>
+                      <div class="dashboard-item-arrow">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="m9 18 6-6-6-6"></path>
+                        </svg>
+                      </div>
+                    </div>
+                    <div class="dashboard-item">
+                      <div class="dashboard-item-icon">
+                        ER
+                      </div>
+                      <div class="dashboard-item-content">
+                        <div class="dashboard-item-title">Emily Rodriguez</div>
+                        <div class="dashboard-item-subtitle">Marketing Specialist</div>
+                      </div>
+                      <div class="dashboard-item-match">
+                        <div class="dashboard-item-match-value">82%</div>
+                        <div class="dashboard-item-match-label">match</div>
+                      </div>
+                      <div class="dashboard-item-arrow">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="m9 18 6-6-6-6"></path>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="dashboard-footer">
+                    <button class="btn btn-primary btn-full">View All Candidates</button>
+                  </div>
+                </div>
+
+                <div class="dashboard-panel" id="panel-1">
+                  <h3 class="dashboard-title">Job Opportunities</h3>
+                  <div class="dashboard-list">
+                    <div class="dashboard-item">
+                      <div class="dashboard-item-icon">
+                        T
+                      </div>
+                      <div class="dashboard-item-content">
+                        <div class="dashboard-item-title">Senior Product Designer</div>
+                        <div class="dashboard-item-subtitle">TechCorp</div>
+                      </div>
+                      <div class="dashboard-item-match">
+                        <div class="dashboard-item-match-value">94%</div>
+                        <div class="dashboard-item-match-label">match</div>
+                      </div>
+                      <div class="dashboard-item-arrow">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="m9 18 6-6-6-6"></path>
+                        </svg>
+                      </div>
+                    </div>
+                    <div class="dashboard-item">
+                      <div class="dashboard-item-icon">
+                        I
+                      </div>
+                      <div class="dashboard-item-content">
+                        <div class="dashboard-item-title">Frontend Developer</div>
+                        <div class="dashboard-item-subtitle">InnovateCo</div>
+                      </div>
+                      <div class="dashboard-item-match">
+                        <div class="dashboard-item-match-value">89%</div>
+                        <div class="dashboard-item-match-label">match</div>
+                      </div>
+                      <div class="dashboard-item-arrow">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="m9 18 6-6-6-6"></path>
+                        </svg>
+                      </div>
+                    </div>
+                    <div class="dashboard-item">
+                      <div class="dashboard-item-icon">
+                        G
+                      </div>
+                      <div class="dashboard-item-content">
+                        <div class="dashboard-item-title">Marketing Manager</div>
+                        <div class="dashboard-item-subtitle">GrowthBrand</div>
+                      </div>
+                      <div class="dashboard-item-match">
+                        <div class="dashboard-item-match-value">82%</div>
+                        <div class="dashboard-item-match-label">match</div>
+                      </div>
+                      <div class="dashboard-item-arrow">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="m9 18 6-6-6-6"></path>
+                        </svg>
+                      </div>
+                    </div>
+                    <div class="dashboard-item">
+                      <div class="dashboard-item-icon">
+                        A
+                      </div>
+                      <div class="dashboard-item-content">
+                        <div class="dashboard-item-title">Data Analyst</div>
+                        <div class="dashboard-item-subtitle">AnalyticsPro</div>
+                      </div>
+                      <div class="dashboard-item-match">
+                        <div class="dashboard-item-match-value">91%</div>
+                        <div class="dashboard-item-match-label">match</div>
+                      </div>
+                      <div class="dashboard-item-arrow">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="m9 18 6-6-6-6"></path>
+                        </svg>
+                      </div>
+                    </div>
+                    <div class="dashboard-item">
+                      <div class="dashboard-item-icon">
+                        D
+                      </div>
+                      <div class="dashboard-item-content">
+                        <div class="dashboard-item-title">UX Researcher</div>
+                        <div class="dashboard-item-subtitle">DesignStudio</div>
+                      </div>
+                      <div class="dashboard-item-match">
+                        <div class="dashboard-item-match-value">86%</div>
+                        <div class="dashboard-item-match-label">match</div>
+                      </div>
+                      <div class="dashboard-item-arrow">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="m9 18 6-6-6-6"></path>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="dashboard-footer">
+                    <button class="btn btn-primary btn-full">Browse All Jobs</button>
+                  </div>
+                </div>
+
+                <div class="dashboard-panel" id="panel-2">
+                  <h3 class="dashboard-title">AI-Powered Insights</h3>
+                  <div class="skills-grid">
+                    <div class="skill-box">
+                      <div class="skill-box-title">Time-to-Hire</div>
+                      <div class="skill-box-value">-45%</div>
+                      <div class="skill-box-subtitle">Faster than industry average</div>
+                    </div>
+                    <div class="skill-box">
+                      <div class="skill-box-title">Match Quality</div>
+                      <div class="skill-box-value">92%</div>
+                      <div class="skill-box-subtitle">Successful placements</div>
+                    </div>
+                  </div>
+                  <div class="skill-progress">
+                    <div class="skill-progress-title">Skill Gap Analysis</div>
+                    <div class="space-y-2">
+                      <div class="skill-item">
+                        <div class="skill-item-header">
+                          <span class="skill-item-name">React</span>
+                          <span class="skill-item-values">
+                            70% / 85%
+                          </span>
+                        </div>
+                        <div class="skill-item-bar">
+                          <div class="skill-item-progress" style="width: 70%"></div>
+                        </div>
+                      </div>
+                      <div class="skill-item">
+                        <div class="skill-item-header">
+                          <span class="skill-item-name">TypeScript</span>
+                          <span class="skill-item-values">
+                            65% / 80%
+                          </span>
+                        </div>
+                        <div class="skill-item-bar">
+                          <div class="skill-item-progress" style="width: 65%"></div>
+                        </div>
+                      </div>
+                      <div class="skill-item">
+                        <div class="skill-item-header">
+                          <span class="skill-item-name">UI/UX</span>
+                          <span class="skill-item-values">
+                            90% / 75%
+                          </span>
+                        </div>
+                        <div class="skill-item-bar">
+                          <div class="skill-item-progress success" style="width: 90%"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="dashboard-footer">
+                    <button class="btn btn-primary btn-full">View Full Analytics</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trusted By Section -->
+    <section class="trusted-by">
+      <div class="container">
+        <div class="trusted-by-title">
+          <p>Trusted by leading companies worldwide</p>
+        </div>
+        <div class="trusted-by-logos">
+          <div class="trusted-by-logo"></div>
+          <div class="trusted-by-logo"></div>
+          <div class="trusted-by-logo"></div>
+          <div class="trusted-by-logo"></div>
+          <div class="trusted-by-logo"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="section">
+      <div class="container">
+        <div class="stats-grid md-grid-cols-4">
+          <div class="stat-item fade-in" style="animation-delay: 0s">
+            <div class="stat-value">500+</div>
+            <div class="stat-label">Companies</div>
+          </div>
+          <div class="stat-item fade-in" style="animation-delay: 0.1s">
+            <div class="stat-value">10,000+</div>
+            <div class="stat-label">Successful Matches</div>
+          </div>
+          <div class="stat-item fade-in" style="animation-delay: 0.2s">
+            <div class="stat-value">85%</div>
+            <div class="stat-label">Hiring Success Rate</div>
+          </div>
+          <div class="stat-item fade-in" style="animation-delay: 0.3s">
+            <div class="stat-value">3x</div>
+            <div class="stat-label">Faster Hiring Process</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section section-alt">
+      <div class="container">
+        <div class="section-header fade-in">
+          <h2 class="section-title">Intelligent Features for Modern Recruitment</h2>
+          <p class="section-description">
+            Our AI-powered tools streamline every step of your hiring process, saving time and improving candidate
+            quality.
+          </p>
+        </div>
+
+        <div class="feature-grid md-grid-cols-3">
+          <div class="feature-card fade-in" style="animation-delay: 0s">
+            <div class="feature-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" x2="8" y1="13" y2="13"></line>
+                <line x1="16" x2="8" y1="17" y2="17"></line>
+                <line x1="10" x2="8" y1="9" y2="9"></line>
+              </svg>
+            </div>
+            <h3 class="feature-title">AI Resume Analyzer</h3>
+            <p class="feature-description">Our AI analyzes resumes and extracts key skills and qualifications, providing match percentages with job descriptions.</p>
+            <a href="#" class="feature-link">
+              Learn more 
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+              </svg>
+            </a>
+          </div>
+          <div class="feature-card fade-in" style="animation-delay: 0.1s">
+            <div class="feature-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.3-4.3"></path>
+              </svg>
+            </div>
+            <h3 class="feature-title">Job Description Analyzer</h3>
+            <p class="feature-description">Converts vague job descriptions into clear keywords for better matching and more relevant candidate applications.</p>
+            <a href="#" class="feature-link">
+              Learn more 
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+              </svg>
+            </a>
+          </div>
+          <div class="feature-card fade-in" style="animation-delay: 0.2s">
+            <div class="feature-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
+            <h3 class="feature-title">Matchmaking Engine</h3>
+            <p class="feature-description">Uses AI to rank candidates on a scale of 0-100 based on relevance to your job requirements and company culture.</p>
+            <a href="#" class="feature-link">
+              Learn more 
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+              </svg>
+            </a>
+          </div>
+          <div class="feature-card fade-in" style="animation-delay: 0.3s">
+            <div class="feature-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
+            <h3 class="feature-title">Interview Scheduler</h3>
+            <p class="feature-description">Recommends suitable interview slots automatically based on calendar availability and candidate preferences.</p>
+            <a href="#" class="feature-link">
+              Learn more 
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+              </svg>
+            </a>
+          </div>
+          <div class="feature-card fade-in" style="animation-delay: 0.4s">
+            <div class="feature-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+              </svg>
+            </div>
+            <h3 class="feature-title">Communication Hub</h3>
+            <p class="feature-description">Delivers personalized communication at scale, keeping candidates engaged throughout the hiring process.</p>
+            <a href="#" class="feature-link">
+              Learn more 
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+              </svg>
+            </a>
+          </div>
+          <div class="feature-card fade-in" style="animation-delay: 0.5s">
+            <div class="feature-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 3v18h18"></path>
+                <path d="M18 17V9"></path>
+                <path d="M13 17V5"></path>
+                <path d="M8 17v-3"></path>
+              </svg>
+            </div>
+            <h3 class="feature-title">Analytics Dashboard</h3>
+            <p class="feature-description">Get actionable insights on your hiring process with real-time analytics and improvement recommendations.</p>
+            <a href="#" class="feature-link">
+              Learn more 
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="section">
+      <div class="container">
+        <div class="section-header fade-in">
+          <h2 class="section-title">How Finder AI Works</h2>
+          <p class="section-description">
+            Our platform simplifies recruitment with a powerful AI-driven workflow
+          </p>
+        </div>
+
+        <div class="process">
+          <div class="process-line"></div>
+
+          <div class="process-grid lg-grid-cols-4">
+            <div class="process-step fade-in" style="animation-delay: 0s">
+              <div class="process-step-number">01</div>
+              <div class="process-step-content">
+                <h3 class="process-step-title">Define Your Requirements</h3>
+                <p class="process-step-description">Our AI analyzes your job requirements and extracts key skills and qualifications.</p>
+              </div>
+            </div>
+            <div class="process-step fade-in" style="animation-delay: 0.1s">
+              <div class="process-step-number">02</div>
+              <div class="process-step-content">
+                <h3 class="process-step-title">AI-Powered Matching</h3>
+                <p class="process-step-description">AI automatically ranks applicants based on resume match and qualifications.</p>
+              </div>
+            </div>
+            <div class="process-step fade-in" style="animation-delay: 0.2s">
+              <div class="process-step-number">03</div>
+              <div class="process-step-content">
+                <h3 class="process-step-title">Streamlined Communication</h3>
+                <p class="process-step-description">Engage with top candidates through our integrated messaging platform.</p>
+              </div>
+            </div>
+            <div class="process-step fade-in" style="animation-delay: 0.3s">
+              <div class="process-step-number">04</div>
+              <div class="process-step-content">
+                <h3 class="process-step-title">Hire with Confidence</h3>
+                <p class="process-step-description">Make data-driven decisions with comprehensive candidate insights.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-header fade-in">
+          <h2 class="section-title">Success Stories</h2>
+          <p class="section-description">See how companies are finding their perfect matches with Finder AI</p>
+        </div>
+
+        <div class="testimonial-grid md-grid-cols-3">
+          <div class="testimonial-card fade-in" style="animation-delay: 0s">
+            <div class="testimonial-stars">
+              <span>★</span>
+              <span>★</span>
+              <span>★</span>
+              <span>★</span>
+              <span>★</span>
+            </div>
+            <p class="testimonial-quote">"Finder AI has completely transformed our hiring process. We've reduced time-to-hire by 70% and found amazing talent we would have missed otherwise."</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">
+                JW
+              </div>
+              <div>
+                <div class="testimonial-info-name">Jessica Williams</div>
+                <div class="testimonial-info-role">Head of Talent, TechCorp</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card fade-in" style="animation-delay: 0.1s">
+            <div class="testimonial-stars">
+              <span>★</span>
+              <span>★</span>
+              <span>★</span>
+              <span>★</span>
+              <span>★</span>
+            </div>
+            <p class="testimonial-quote">"The AI matching technology is incredibly accurate. We're making better hiring decisions and seeing improved retention rates as a result."</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">
+                DC
+              </div>
+              <div>
+                <div class="testimonial-info-name">David Chen</div>
+                <div class="testimonial-info-role">Recruiting Manager, InnovateCo</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card fade-in" style="animation-delay: 0.2s">
+            <div class="testimonial-stars">
+              <span>★</span>
+              <span>★</span>
+              <span>★</span>
+              <span>★</span>
+              <span>★</span>
+            </div>
+            <p class="testimonial-quote">"I was skeptical at first, but the quality of matches is incredible. The AI seems to understand exactly what we're looking for in candidates."</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">
+                SR
+              </div>
+              <div>
+                <div class="testimonial-info-name">Sophia Rodriguez</div>
+                <div class="testimonial-info-role">HR Director, GrowthStartup</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="section">
+      <div class="container">
+        <div class="section-header fade-in">
+          <h2 class="section-title">Simple, Transparent Pricing</h2>
+          <p class="section-description">Choose the plan that works best for your recruitment needs</p>
+        </div>
+
+        <div class="pricing-grid md-grid-cols-3">
+          <div class="pricing-card fade-in" style="animation-delay: 0s">
+            <div class="pricing-header">
+              <h3 class="pricing-name">Starter</h3>
+              <div class="pricing-price">
+                $49
+                <span class="pricing-duration">/month</span>
+              </div>
+              <p class="pricing-description">Perfect for small businesses and startups</p>
+            </div>
+            <ul class="pricing-features">
+              <li class="pricing-feature">
+                <span class="pricing-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <path d="m9 11 3 3L22 4"></path>
+                  </svg>
+                </span>
+                <span class="pricing-feature-text">AI Resume Analyzer (up to 50/month)</span>
+              </li>
+              <li class="pricing-feature">
+                <span class="pricing-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <path d="m9 11 3 3L22 4"></path>
+                  </svg>
+                </span>
+                <span class="pricing-feature-text">Job Description Analyzer</span>
+              </li>
+              <li class="pricing-feature">
+                <span class="pricing-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <path d="m9 11 3 3L22 4"></path>
+                  </svg>
+                </span>
+                <span class="pricing-feature-text">Basic Matching Engine</span>
+              </li>
+              <li class="pricing-feature">
+                <span class="pricing-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <path d="m9 11 3 3L22 4"></path>
+                  </svg>
+                </span>
+                <span class="pricing-feature-text">Email Templates</span>
+              </li>
+              <li class="pricing-feature">
+                <span class="pricing-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <path d="m9 11 3 3L22 4"></path>
+                  </svg>
+                </span>
+                <span class="pricing-feature-text">1 User Account</span>
+              </li>
+            </ul>
+            <button class="btn pricing-button pricing-button-secondary">Get Started</button>
+          </div>
+          <div class="pricing-card popular fade-in" style="animation-delay: 0.1s">
+            <div class="pricing-popular-badge">
+              Most Popular
+            </div>
+            <div class="pricing-header">
+              <h3 class="pricing-name">Professional</h3>
+              <div class="pricing-price">
+                $149
+                <span class="pricing-duration">/month</span>
+              </div>
+              <p class="pricing-description">Ideal for growing teams and companies</p>
+            </div>
+            <ul class="pricing-features">
+              <li class="pricing-feature">
+                <span class="pricing-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <path d="m9 11 3 3L22 4"></path>
+                  </svg>
+                </span>
+                <span class="pricing-feature-text">AI Resume Analyzer (up to 200/month)</span>
+              </li>
+              <li class="pricing-feature">
+                <span class="pricing-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <path d="m9 11 3 3L22 4"></path>
+                  </svg>
+                </span>
+                <span class="pricing-feature-text">Advanced Job Description Analyzer</span>
+              </li>
+              <li class="pricing-feature">
+                <span class="pricing-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <path d="m9 11 3 3L22 4"></path>
+                  </svg>
+                </span>
+                <span class="pricing-feature-text">Full Matching Engine</span>
+              </li>
+              <li class="pricing-feature">
+                <span class="pricing-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <path d="m9 11 3 3L22 4"></path>
+                  </svg>
+                </span>
+                <span class="pricing-feature-text">Interview Scheduler</span>
+              </li>
+              <li class="pricing-feature">
+                <span class="pricing-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <path d="m9 11 3 3L22 4"></path>
+                  </svg>
+                </span>
+                <span class="pricing-feature-text">Communication Hub</span>
+              </li>
+              <li class="pricing-feature">
+                <span class="pricing-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <path d="m9 11 3 3L22 4"></path>
+                  </svg>
+                </span>
+                <span class="pricing-feature-text">5 User Accounts</span>
+              </li>
+              <li class="pricing-feature">
+                <span class="pricing-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <path d="m9 11 3 3L22 4"></path>
+                  </svg>
+                </span>
+                <span class="pricing-feature-text">Analytics Dashboard</span>
+              </li>
+            </ul>
+            <button class="btn pricing-button pricing-button-primary">Get Started</button>
+          </div>
+          <div class="pricing-card fade-in" style="animation-delay: 0.2s">
+            <div class="pricing-header">
+              <h3 class="pricing-name">Enterprise</h3>
+              <div class="pricing-price">
+                Custom
+                <span class="pricing-duration">/month</span>
+              </div>
+              <p class="pricing-description">For large organizations with complex needs</p>
+            </div>
+            <ul class="pricing-features">
+              <li class="pricing-feature">
+                <span class="pricing-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <path d="m9 11 3 3L22 4"></path>
+                  </svg>
+                </span>
+                <span class="pricing-feature-text">Unlimited AI Resume Processing</span>
+              </li>
+              <li class="pricing-feature">
+                <span class="pricing-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <path d="m9 11 3 3L22 4"></path>
+                  </svg>
+                </span>
+                <span class="pricing-feature-text">Custom AI Training</span>
+              </li>
+              <li class="pricing-feature">
+                <span class="pricing-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <path d="m9 11 3 3L22 4"></path>
+                  </svg>
+                </span>
+                <span class="pricing-feature-text">Advanced Analytics</span>
+              </li>
+              <li class="pricing-feature">
+                <span class="pricing-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <path d="m9 11 3 3L22 4"></path>
+                  </svg>
+                </span>
+                <span class="pricing-feature-text">API Access</span>
+              </li>
+              <li class="pricing-feature">
+                <span class="pricing-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <path d="m9 11 3 3L22 4"></path>
+                  </svg>
+                </span>
+                <span class="pricing-feature-text">Dedicated Account Manager</span>
+              </li>
+              <li class="pricing-feature">
+                <span class="pricing-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <path d="m9 11 3 3L22 4"></path>
+                  </svg>
+                </span>
+                <span class="pricing-feature-text">Unlimited User Accounts</span>
+              </li>
+              <li class="pricing-feature">
+                <span class="pricing-feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <path d="m9 11 3 3L22 4"></path>
+                  </svg>
+                </span>
+                <span class="pricing-feature-text">Custom Integrations</span>
+              </li>
+            </ul>
+            <button class="btn pricing-button pricing-button-secondary">Contact Sales</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+      <div class="container">
+        <div class="cta-container fade-in">
+          <h2 class="cta-title">Ready to Transform Your Hiring Process?</h2>
+          <p class="cta-description">
+            Join hundreds of companies using Finder AI to find the perfect candidates faster and more efficiently.
+          </p>
+          <div class="cta-buttons sm-flex-row">
+            <button class="btn btn-white btn-lg">Start Free Trial</button>
+            <button class="btn btn-outline border-blue-300 text-white btn-lg">Schedule Demo</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid md-grid-cols-4">
+          <div>
+            <div class="footer-logo">
+              <div class="footer-logo-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path>
+                  <path d="M5 3v4"></path>
+                  <path d="M19 17v4"></path>
+                  <path d="M3 5h4"></path>
+                  <path d="M17 19h4"></path>
+                </svg>
+              </div>
+              <span class="footer-logo-text">Finder AI</span>
+            </div>
+            <p class="footer-about">
+              AI-powered recruitment platform that simplifies and enhances the hiring process for both candidates and recruiters.
+            </p>
+            <div class="footer-social">
+              <a href="#" class="footer-social-link">
+                <span class="sr-only">twitter</span>
+                <div class="h-5 w-5"></div>
+              </a>
+              <a href="#" class="footer-social-link">
+                <span class="sr-only">facebook</span>
+                <div class="h-5 w-5"></div>
+              </a>
+              <a href="#" class="footer-social-link">
+                <span class="sr-only">linkedin</span>
+                <div class="h-5 w-5"></div>
+              </a>
+              <a href="#" class="footer-social-link">
+                <span class="sr-only">instagram</span>
+                <div class="h-5 w-5"></div>
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="footer-column-title">Product</h3>
+            <ul class="footer-links">
+              <li class="footer-link">
+                <a href="#">Features</a>
+              </li>
+              <li class="footer-link">
+                <a href="#">Pricing</a>
+              </li>
+              <li class="footer-link">
+                <a href="#">Integrations</a>
+              </li>
+              <li class="footer-link">
+                <a href="#">FAQ</a>
+              </li>
+              <li class="footer-link">
+                <a href="#">Roadmap</a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="footer-column-title">Company</h3>
+            <ul class="footer-links">
+              <li class="footer-link">
+                <a href="#">About Us</a>
+              </li>
+              <li class="footer-link">
+                <a href="#">Careers</a>
+              </li>
+              <li class="footer-link">
+                <a href="#">Blog</a>
+              </li>
+              <li class="footer-link">
+                <a href="#">Press</a>
+              </li>
+              <li class="footer-link">
+                <a href="#">Contact</a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="footer-column-title">Resources</h3>
+            <ul class="footer-links">
+              <li class="footer-link">
+                <a href="#">Documentation</a>
+              </li>
+              <li class="footer-link">
+                <a href="#">Help Center</a>
+              </li>
+              <li class="footer-link">
+                <a href="#">API</a>
+              </li>
+              <li class="footer-link">
+                <a href="#">Community</a>
+              </li>
+              <li class="footer-link">
+                <a href="#">Partners</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p class="footer-copyright">© <span id="current-year"></span> Finder AI. All rights reserved.</p>
+          <div class="footer-legal">
+            <a href="#" class="footer-legal-link">Privacy Policy</a>
+            <a href="#" class="footer-legal-link">Terms of Service</a>
+            <a href="#" class="footer-legal-link">Cookie Policy</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Set current year
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    // Toggle mobile menu
+    function toggleMenu() {
+      var menu = document.getElementById('navMenu');
+      menu.classList.toggle('open');
+    }
+
+    // Tab switching
+    function setActiveTab(tabIndex) {
+      // Remove active class from all tabs and panels
+      document.querySelectorAll('.dashboard-tab').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      document.querySelectorAll('.dashboard-panel').forEach(panel => {
+        panel.classList.remove('active');
+      });
+      
+      // Add active class to selected tab and panel
+      document.getElementById('tab-' + tabIndex).classList.add('active');
+      document.getElementById('panel-' + tabIndex).classList.add('active');
+    }
+
+    // Auto-rotate tabs
+    let currentTab = 0;
+    const interval = setInterval(() => {
+      currentTab = (currentTab + 1) % 3;
+      setActiveTab(currentTab);
+    }, 5000);
+  </script>
+</body>
+</html>

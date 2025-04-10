@@ -17,8 +17,12 @@ def extract_pdf_text(file):
 
 # Routes
 @app.route('/')
+def landing():
+    return render_template('landing.html')
+@app.route('/login')
 def login():
     return render_template('login.html')
+
 
 @app.route('/matcher')
 def matcher():
